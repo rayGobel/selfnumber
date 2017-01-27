@@ -11,6 +11,6 @@ How to run program:
 
 - Clone this repository
 
-- Run `cargo test` to make sure everything run nicely
+- Run `cargo test` in cli to make sure everything run nicely
 
-- Run `cargo test`
+- then run `cargo run`
