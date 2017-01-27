@@ -1,0 +1,6 @@
+[package]
+name = "selfnumbers"
+version = "0.1.0"
+authors = ["Raynal R. Gobel <raynal.gobel@bhinneka.com>"]
+
+[dependencies]
