@@ -14,3 +14,5 @@ How to run program:
 - Run `cargo test` in cli to make sure everything run nicely
 
 - then run `cargo run`
+
+The sum of self numbers under 5000 is 1227365
