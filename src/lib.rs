@@ -15,31 +15,22 @@ fn sum_of_digits(number: u32) -> u32 {
 }
 
 pub fn is_selfnumber(number: u32) -> bool {
-
-    if number == 1 { return true; }
-
-    let mut generator = 1;
-    let digits_length = return_digits(number).len();
-    if digits_length >= 3 {
-        generator = number - (9*digits_length as u32);
+    match number {
+        1 => true,
+        _ => determine_if_selfnumber(number)
     }
+}
 
-    loop {
-        // Check for candidancy
-        let candidate = number_self_digit_sum(generator);
-        if candidate == number {
-            return false;
-        }
+fn determine_if_selfnumber(number: u32) -> bool {
+    let digits = return_digits(number);
+    let generator = match digits.len() {
+        1 ... 2 => 1,
+        _ => number - (9 * digits.len() as u32)
+    };
 
-        if generator > number {
-            break;
-        }
-
-        generator += 1;
-    }
-
-    return true;
-
+    (generator..number)
+        .into_iter()
+        .all(|candidate| number_self_digit_sum(candidate) != number)
 }
 
 pub fn list_of_self_numbers(limit: u32) -> Vec<u32> {
