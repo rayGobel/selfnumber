@@ -1,20 +1,17 @@
 pub fn return_digits(num: u32) -> Vec<u32> {
-    let num_str = num.to_string();
-    let mut result = vec![];
-    for digit in num_str.chars() {
-        result.push(digit.to_digit(10).unwrap());
-    }
-    result
-
+    num.to_string()
+        .chars()
+        .into_iter()
+        .map(|n| n.to_digit(10).unwrap())
+        .collect()
 }
 
 pub fn number_self_digit_sum(generator: u32) -> u32 {
-    let sum_of_digits = sum_of_digits(generator);
-    generator + sum_of_digits
+    generator + sum_of_digits(generator)
 }
 
 fn sum_of_digits(number: u32) -> u32 {
-    return_digits(number).iter().fold(0, |sum, x| sum + x)
+    return_digits(number).iter().sum()
 }
 
 pub fn is_selfnumber(number: u32) -> bool {
@@ -46,12 +43,8 @@ pub fn is_selfnumber(number: u32) -> bool {
 }
 
 pub fn list_of_self_numbers(limit: u32) -> Vec<u32> {
-    let mut self_numbers = vec![];
-
-    for candidate in 1..limit+1 {
-        if is_selfnumber(candidate) {
-            self_numbers.push(candidate);
-        }
-    }
-    return self_numbers;
+    (1..limit+1)
+        .into_iter()
+        .filter(|n| is_selfnumber(*n))
+        .collect()
 }
